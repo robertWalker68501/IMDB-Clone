@@ -1,12 +1,19 @@
 import Link from 'next/link';
-import ThemeToggle from '@/components/ThemeToggle';
+import ThemeToggle from '../components/ThemeToggle';
+import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
+
 export default function Header() {
   return (
     <div className='mx-auto flex max-w-6xl items-center justify-between p-3'>
       <ul className='flex gap-4'>
-        <li>
-          <Link href='/sign-in'>Sign in</Link>
-        </li>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
+        <SignedOut>
+          <li>
+            <Link href='/sign-in'>Sign in</Link>
+          </li>
+        </SignedOut>
         <li className='hidden sm:block'>
           <Link href={'/'}>Home</Link>
         </li>
